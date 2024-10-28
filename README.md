@@ -70,6 +70,7 @@ League, La Liga, Bundesliga, Ligue 1 and Serie A. Differences between the
 two will fluctuate but I am in no doubt of its suitability of use for any
 prediction model for football.
 
+![image](https://github.com/user-attachments/assets/81c9cac5-dd9c-42d4-b44c-2c7933a35438)
 
 ```
 Figure 1: Average xG versus Average Goals scored.
@@ -131,6 +132,7 @@ outliers in the majority of features. Take the home_corner_xg variable where
 the median was quite low around 0.15. The outliers demonstrate good
 performance by a given team. How I deal with them is an important
 consideration which I will touch on later.
+![image](https://github.com/user-attachments/assets/4c93929e-c366-4106-9c75-a7e87d316b24)
 
 ```
 Figure 2: Example Box Plots of the given variables.
@@ -140,6 +142,7 @@ with the draw_prob target variable. There were a small number of high draw
 probabilities associated with some games. From experience a draw is roughly
 priced between 20%-35% in a top level game. Having such noisy training data
 was not desirable so these instances were removed.
+![image](https://github.com/user-attachments/assets/54dc8873-170a-4d80-b059-7bd1c1e9be13)
 
 ```
 Figure 3: Outliers in one of the target variables.
@@ -157,9 +160,10 @@ the next plot for example. If any data scientist looked at the line graph below
 they would be instantly able to conclude that home teams tend to perform
 better than away teams. The evidence for home advantage is extremely clear
 and a model should take this into account.
+![image](https://github.com/user-attachments/assets/e8dc629b-c08b-4b11-a2e2-a6b2dc65e612)
 
 ```
-Figure 3: Home advantage.
+Figure 4: Home advantage.
 ```
 To calculate home advantage I did a couple of steps. I first subtracted the
 home_xG — away_xG fields. This were initially scraped but not included in
@@ -197,9 +201,10 @@ improvement over the years and then in the latter part of the data set when
 they became champions their home advantage was at its highest. This metric
 should add that little bit extra in the model’s outputs.
 
+![image](https://github.com/user-attachments/assets/80b4152d-11ac-4322-83c3-748f795042d2)
 
 ```
-Figure 4: Ac Milan’s Home advantage metric.
+Figure 5: Ac Milan’s Home advantage metric.
 ```
 ## Neural Network Creation
 
@@ -307,9 +312,10 @@ Figure 5 is a proxy visualisation of the MaldiniNet, the first hidden layer is o
 the left which then feeds into the next hidden layer and then finally the
 output layer of 3 nodes which correspond to home win, draw and away win
 probabilities.
+![image](https://github.com/user-attachments/assets/5c390e7a-925d-46f4-8434-8a6c05144b08)
 
 ```
-Figure 5: MaldiniNet composition of one branch.
+Figure 6: MaldiniNet composition of one branch.
 ```
 
 Remember when I noted the presence of outliers earlier in the feature
@@ -364,9 +370,10 @@ points about a teams strengths in each situation and I felt the model would
 do better by applying the MinMaxScaler which perserved these data points.
 To further cement my decision I plotted the loss curves of both models, one
 for Robust scaling and one for MinMax scaling.
+![image](https://github.com/user-attachments/assets/8a9b74bd-0dca-492d-a171-7b443800573f)
 
 ```
-Figure 6: RobustScaling loss curves.
+Figure 7: RobustScaling loss curves.
 ```
 By evaluating the plots of both techniques, they are both very close. Robust
 scaling does not overperform the MinMaxScaling to such an extent that I can
@@ -382,9 +389,10 @@ loss values which is always a good sign. The only way I could prove that the
 model could function as a good predictor of future match probabilities was to
 validate this against real life closing odd values and simulate a betting
 strategy at different thresholds.
+![image](https://github.com/user-attachments/assets/8503df4d-2371-47a2-979f-4ed142cf20ef)
 
 ```
-Figure 7: MinMaxScaling loss scurves.
+Figure 8: MinMaxScaling loss scurves.
 ```
 ## Match Prediction Process
 
@@ -494,18 +502,20 @@ team was that price, team news, form and ultimately sharp money dictated
 their closing odds. I will categorically state that no model predicting in the
 top 5 leagues should disagree by anything over 10%, these games have the
 highest price confidence.
+![image](https://github.com/user-attachments/assets/c6438a8e-d426-4aab-8b9a-14db0a478a6f)
 
 ```
-Figure 8: Home team betting simulation at different thresholds.
+Figure 9: Home team betting simulation at different thresholds.
 ```
 Betting the draw is not something typical of sharp betting, who turn to asian
 handicap markets in order to get an underdog on side. The model again
 potentially becomes valuable blind betting the draw at the lower end
 thresholds. The higher and totally unrealistic thresholds suffer from minor
 losses.
+![image](https://github.com/user-attachments/assets/51e64da8-d257-46a7-aca8-82701ccdfb7d)
 
 ```
-Figure 9: Draw win betting simulation at different thresholds.
+Figure 10: Draw win betting simulation at different thresholds.
 ```
 
 Betting on the away team where there is a different of opinion between my
@@ -516,9 +526,10 @@ advantage when deciding on the odds outcomes. If I had of trusted the model
 wrt betting the away team I would have no doubt lost money. This illustrates
 why any model should be backtested and simulated before even attempting to
 use.
+![image](https://github.com/user-attachments/assets/40fd7ec6-ecc2-4deb-9c48-8f2027a14897)
 
 ```
-Figure 10: Away win betting simulation at different thresholds.
+Figure 11: Away win betting simulation at different thresholds.
 ```
 ## Conclusion
 
